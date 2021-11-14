@@ -1,1 +1,6 @@
-<h1>Events Page</h1>
+<h1>All Events </h1>
+<% @events.each do |event|%>
+    <h2>Event Date: <%= event.event_date%></h2>
+    <h2>Event Location: <%= event.location%></h2>
+    <h2>Created By: <%=event.creator.username%> </h2>
+<% end %>
