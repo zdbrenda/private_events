@@ -1,0 +1,10 @@
+<%= simple_form_for(@event) do |f|%>
+    <%= f.error_notification%>
+    <div class="field">
+        <div class="control">
+            <%= f.input :event_date, as: :datetime%>
+            <%= f.input :location%>
+            <%= f.button :submit, class:"button is-info"%>
+        </div>
+    </div>
+<% end %>

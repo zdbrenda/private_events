@@ -7,6 +7,7 @@
     <% if current_user && event.creator != current_user %>
         <%= link_to "Attend the event", new_attending_event_path(:user_id=>current_user.id, :id=>event.id)%>
     <% end %>
+    <%= link_to "Show Event Details", event_path(event.id),class: "button is-info"%>
     <br/>
 <% end %>
 <br/><br/>

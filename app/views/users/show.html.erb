@@ -6,6 +6,16 @@
     <%= link_to "Event Details", event_path(event.id)%>
 <% end %>
 
-<%= link_to "Create New Event", new_event_path%>
-<br/>
-<%= link_to "Show Attended Events", show_attended_events_path%>
+<nav class="nav">
+    <div class="navbar-menu">
+        <div class="field is-grouped">
+            <p class="control">
+                <%= link_to "Create New Event", new_event_path, class: "button is-dark"%>
+            </p>
+            <br/>
+            <p class="control">
+                <%= link_to "Show Attended Events", show_attended_events_path, class: "button is-dark"%>
+            </p>
+        </div>
+    </div>
+</nav>
