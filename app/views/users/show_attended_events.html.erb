@@ -1,0 +1,30 @@
+<h1>You have registered for the following events</h1>
+<% @attended_events.each do |event| %>
+    <h2>Event date: <%= event.event_date%></h2>
+    <h2>Event location: <%= event.location%>
+<% end %>
+
+<br/>
+<br/>
+
+<% if @attended_events.future.count >=1 %>
+    <h1> The following events are going to happen in the future: </h1>
+    <br/>
+    <% @attended_events.future.each do |event|%>
+        <br/>
+        <h2>Event Date: <%=event.event_date %></h2>
+        <h2>Event Location: <%= event.location%></h2>
+        <h2>Event Creator: <%= event.creator.username%>
+        <br/>
+    <% end %>
+<% end %>
+
+<br/><br/>
+<% if @attended_events.past.count >=1 %>
+    <h1> The following events happened in tha past: </h1>
+    <% @attended_events.past.each do |event|%>
+        <h2>Event Date: <%=event.event_date %></h2>
+        <h2>Event Location: <%= event.location%></h2>
+    <% end %>
+<% end %>
+<%= link_to "Go back", user_path%>

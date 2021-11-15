@@ -1,6 +1,22 @@
-<h1>All Events </h1>
-<% @events.each do |event|%>
+<h1>All Future Events </h1>
+<% @events.future.each do |event|%>
+    <br/>
     <h2>Event Date: <%= event.event_date%></h2>
     <h2>Event Location: <%= event.location%></h2>
     <h2>Created By: <%=event.creator.username%> </h2>
+    <% if current_user && event.creator != current_user %>
+        <%= link_to "Attend the event", new_attending_event_path(:user_id=>current_user.id, :id=>event.id)%>
+    <% end %>
+    <br/>
 <% end %>
+<br/><br/>
+
+<h1>All Past Events </h1>
+<% @events.past.each do |event|%>
+    <br/>
+    <h2>Event Date: <%= event.event_date%></h2>
+    <h2>Event Location: <%= event.location%></h2>
+    <h2>Created By: <%=event.creator.username%> </h2>
+    <br/>
+<% end %>
+
