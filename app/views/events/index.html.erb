@@ -4,8 +4,12 @@
     <h2>Event Date: <%= event.event_date%></h2>
     <h2>Event Location: <%= event.location%></h2>
     <h2>Created By: <%=event.creator.username%> </h2>
-    <% if current_user && event.creator != current_user %>
-        <%= link_to "Attend the event", new_attending_event_path(:user_id=>current_user.id, :id=>event.id)%>
+    <% if current_user && event.creator != current_user && !event.attendees.include?(current_user) %>
+        <%= link_to "Attend the event", create_attending_event_path(:user_id=>current_user.id, :id=>event.id), method: :post, class: "button is-info" %>
+    <% end %>
+    <% if current_user && event.creator != current_user && event.attendees.include?(current_user)%>
+        <h2>You have registered for the event.</h2>
+        <%= link_to "Deregister from the event", destroy_attending_event_path(:user_id=>current_user.id, :id=>event.id), class: "button is-info", method: :delete, data: { confirm: 'Are you sure?' }%>
     <% end %>
     <%= link_to "Show Event Details", event_path(event.id),class: "button is-info"%>
     <br/>
