@@ -20,7 +20,7 @@
 <% end %>
 
 <br/><br/>
-<% if @attended_events.past.count >=1 %>
+<% if @attended_events.past.uniq.count >=1 %>
     <h1> The following events happened in tha past: </h1>
     <% @attended_events.past.each do |event|%>
         <h2>Event Date: <%=event.event_date %></h2>
