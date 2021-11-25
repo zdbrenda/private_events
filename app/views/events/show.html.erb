@@ -1,9 +1,19 @@
-<h1>Event Detais</h1>
-<h2>Event Date</h2>
-<%=@event.event_date%>
-<h2>Event Location</h2>
-<%= @event.location%>
-<% if @event.creator == current_user %>
+
+<% if ! user_signed_in? %>
+    <h2>Please sign in or sign up to view the event details</h2>
+    <p class="control">
+        <%= link_to "Sign In", new_user_session_path, class: "button is-info"%>
+    </p>
+    <p class="control">
+        <%= link_to "Sign Up", new_user_registration_path, class: "button if-info"%>
+    </p>
+<% else %>
+    <h1>Event Detais</h1>
+    <h2>Event Date</h2>
+    <%=@event.event_date%>
+    <h2>Event Location</h2>
+    <%= @event.location%>
+    <% if @event.creator == current_user %>
     <br/
     <br/>
     <nav class="navbar">
@@ -24,3 +34,6 @@
 <% end %>
 
 <%= link_to "Back to Your Created Events Page", user_path(current_user.id), class: "button is-dark"%>
+
+<%end %>
+
