@@ -31,6 +31,14 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 
 gem 'simple_form'
+
+gem 'figaro'
+
+gem 'omniauth-github'
+
+gem 'omniauth-google-oauth2'
+
+gem 'omniauth-rails_csrf_protection'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -49,7 +57,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.26'
+  
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
@@ -59,3 +67,17 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "bulma-rails", "~> 0.9.2"
+
+group :development, :test do
+  gem 'capybara'
+  gem 'pry-byebug'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 4.0.0.beta2'
+  gem 'rubocop'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'simplecov'
+end
+gem 'devise'
