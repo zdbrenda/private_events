@@ -9,13 +9,17 @@ class User < ApplicationRecord
   has_many :attended_events, through: :attending_events, source: :event,  foreign_key: "attendee_id"
 
   def self.from_omniauth(auth)
-    
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.password_confirmation = user.password
-      user.username = auth.info.name
+    data = auth.info
+    user = User.where(email: data["email"]).first
+    unless user
+        user=User.create(username: data['nickname'],
+          email: data["email"],
+          password: Devise.friendly_token[0,20],
+          provider: auth.provider,
+          uid:      auth.uid
+        )
     end
+    user
   end
 
   def self.new_with_session(params, session)

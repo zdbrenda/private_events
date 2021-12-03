@@ -275,13 +275,11 @@ Devise.setup do |config|
 
   github_client_id = ENV['github_client_id']
   github_client_secret = ENV['github_client_secret']
-  # config.omniauth :github, github_client_id, github_client_secret, { scope: 'user, public_repo',  access_type: 'offline', prompt: 'consent'}
-  config.omniauth :github, github_client_id, github_client_secret, { scope: 'user, public_repo'}
+  config.omniauth :github, github_client_id, github_client_secret, { scope: 'user, public_repo',  access_type: 'offline', prompt: 'consent'}
 
   google_client_id = ENV['google_oauth2_client_id']
   google_client_secret = ENV['google_oauth2_client_secret']
-  # config.omniauth :google_oauth2, google_client_id, google_client_secret, { scope: "userinfo.email, userinfo.profile", skip_jwt: true, access_type: 'offline', prompt: 'consent'}
-  config.omniauth :google_oauth2, google_client_id, google_client_secret, { scope: "userinfo.email, userinfo.profile", skip_jwt: true }
+  config.omniauth :google_oauth2, google_client_id, google_client_secret, { scope: "userinfo.email, userinfo.profile", skip_jwt: true, access_type: 'offline', prompt: 'consent'}
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
