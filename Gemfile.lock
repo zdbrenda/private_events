@@ -62,9 +62,13 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    argon2-kdf (0.1.7)
     ast (2.4.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
+    blind_index (2.2.0)
+      activesupport (>= 5)
+      argon2-kdf (>= 0.1.1)
     bootsnap (1.9.1)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -90,8 +94,21 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-jwt (0.9.0)
+      devise (~> 4.0)
+      warden-jwt_auth (~> 0.6)
     diff-lcs (1.4.4)
     docile (1.4.0)
+    dry-auto_inject (0.8.0)
+      dry-container (>= 0.3.4)
+    dry-configurable (0.13.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.6)
+    dry-container (0.9.0)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.13, >= 0.13.0)
+    dry-core (0.7.1)
+      concurrent-ruby (~> 1.0)
     erubi (1.10.0)
     faraday (1.8.0)
       faraday-em_http (~> 1.0)
@@ -112,6 +129,8 @@ GEM
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffi (1.15.4)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
@@ -126,6 +145,7 @@ GEM
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    lockbox (0.6.6)
     loofah (2.12.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -308,6 +328,11 @@ GEM
     unicode-display_width (2.1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
+    warden-jwt_auth (0.6.0)
+      dry-auto_inject (~> 0.8)
+      dry-configurable (~> 0.13)
+      jwt (~> 2.1)
+      warden (~> 1.2)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -334,14 +359,18 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  blind_index
   bootsnap (>= 1.4.4)
   bulma-rails (~> 0.9.2)
   byebug
   capybara
   devise
+  devise-jwt
+  fast_jsonapi
   figaro
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  lockbox
   omniauth-github
   omniauth-google-oauth2
   omniauth-rails_csrf_protection

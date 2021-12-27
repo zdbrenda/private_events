@@ -39,6 +39,14 @@ gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 
 gem 'omniauth-rails_csrf_protection'
+
+gem 'devise-jwt'
+
+gem 'fast_jsonapi'
+
+gem 'lockbox'
+
+gem 'blind_index'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

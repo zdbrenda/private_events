@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_28_225241) do
+ActiveRecord::Schema.define(version: 2021_12_26_234306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_keys", force: :cascade do |t|
+    t.integer "bearer_id", null: false
+    t.string "bearer_type", null: false
+    t.string "token", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bearer_id", "bearer_type"], name: "index_api_keys_on_bearer_id_and_bearer_type"
+    t.index ["token"], name: "index_api_keys_on_token", unique: true
+  end
+
+  create_table "api_users", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_api_users_on_email", unique: true
+  end
 
   create_table "attending_events", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -34,6 +52,16 @@ ActiveRecord::Schema.define(version: 2021_11_28_225241) do
     t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
+  create_table "google_accounts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "username"
+    t.string "token"
+    t.string "secret"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_google_accounts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -45,11 +73,15 @@ ActiveRecord::Schema.define(version: 2021_11_28_225241) do
     t.string "username"
     t.string "provider"
     t.string "uid"
+    t.text "private_api_key_ciphertext"
+    t.string "private_api_key_bidx"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["private_api_key_bidx"], name: "index_users_on_private_api_key_bidx", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "attending_events", "events"
   add_foreign_key "attending_events", "users"
   add_foreign_key "events", "users", column: "creator_id"
+  add_foreign_key "google_accounts", "users"
 end
