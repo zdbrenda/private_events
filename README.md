@@ -36,6 +36,8 @@ I have also deployed it to Heroku: https://shrouded-bayou-01447.herokuapp.com/
 |GET           |/api/v1/users/:id             |Show a user
 |PATCH         |/api/v1/users/:id             |Edit a user             |If the User Id you provided is not your own user Id, a 401 status code will be returned. 
 |PUT           |/api/v1/users/:id             |Edit a user             |If the User Id you provided is not your own user Id, a 401 status code will be returned.
+|GET           |/api/v1/users/:id/events      |Display registered events |If the User Id you provided is not your own user ID, a 401 status code will be returned.
+|GET           |/api/v1/users/:id/created_events |Display created events |A list of events which were created by the user, with a list of attendees, will be displayed. If the User Id you provided is not your own user ID, a 401 status code will be returned.
 
 
 
