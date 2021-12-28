@@ -3,6 +3,7 @@ module Api
         class UsersController < ApiController
             before_action :authorize_user, only: [:update, :show_registered_events]
             def show
+                @target_user = User.find(params[:id])
             end
 
             def update
@@ -24,7 +25,6 @@ module Api
             end
 
             def authorize_user
-                # debugger
                 render json: {message: "Unauthorized"}, status: :unauthorized unless @user.id == params[:id].to_i
             end
         end

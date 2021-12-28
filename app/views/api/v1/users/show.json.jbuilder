@@ -1,4 +1,4 @@
-json.id @user.id
+json.id @target_user.id
 
-json.username @user.username
-json.email @user.email
+json.username @target_user.username
+json.email @target_user.email
