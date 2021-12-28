@@ -1,7 +1,7 @@
 module Api
     module V1
         class UsersController < ApiController
-            before_action :authorize_user, only: [:update, :show_registered_events]
+            before_action :authorize_user, only: [:update, :show_registered_events, :show_created_events]
             def show
                 @target_user = User.find(params[:id])
             end
@@ -20,6 +20,10 @@ module Api
 
             def show_registered_events
                 @events = @user.attended_events
+            end
+
+            def show_created_events
+                @created_events = @user.created_events
             end
 
             private

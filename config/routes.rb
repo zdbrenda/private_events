@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post '/api/v1/events/:id/register', to: "api/v1/events#register", format: :json
   get '/api/v1/users/:id/events', to: "api/v1/users#show_registered_events", format: :json
   post '/api/v1/events/:id/deregister', to: "api/v1/events#deregister", format: :json
+  get '/api/v1/users/:id/created_events', to: "api/v1/users#show_created_events", format: :json
 
   namespace :user do
     resource :private_api_keys, only: :update
