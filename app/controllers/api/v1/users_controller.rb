@@ -6,9 +6,13 @@ module Api
                 @target_user = User.find(params[:id])
             end
 
+            def show_self
+                @user
+            end
+
             def update
                 if @user.update(user_params)
-                    render :show, status: :ok
+                    render :show_self, status: :ok
                 else
                     render json: {message: @user.errors.full_messages}, status: :unprocessable_entity
                 end
