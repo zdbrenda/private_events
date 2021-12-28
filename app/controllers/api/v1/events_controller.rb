@@ -43,7 +43,7 @@ module Api
                     @event.attendees << @user
                     render :show, status: :ok
                 else
-                    render json: {message: "You can't register an event that you have created or you have already registered.", status: "error", code: 4000}
+                    render json: {message: "You can't register an event that you have created or you have already registered."}, status: :forbidden
                 end
             end
 
@@ -52,7 +52,7 @@ module Api
                     @event.attendees.delete(@user)
                     render :show, status: :ok
                 else
-                    render json: {message: "You can't diregister an event that you have created or you have not registered.", status: "error", code: 4000}
+                    render json: {message: "You can't diregister an event that you have created or you have not registered."}, status: :forbidden
                 end
             end
 

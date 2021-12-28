@@ -1,1 +1,1 @@
-Lockbox.master_key = ENV["lockbox_master_key"]
+Lockbox.master_key = ENV["LOCKBOX_MASTER_KEY"]
